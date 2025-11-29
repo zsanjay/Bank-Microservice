@@ -40,8 +40,6 @@ public class AccountsServiceImpl implements AccountsService {
         }
         Customer customer = customerMapper.toEntity(customerDto);
         log.info("Creating account for customer {}", customer);
-        customer.setCreatedBy(AccountsConstants.USER);
-        customer.setCreatedAt(LocalDateTime.now());
         Customer newCustomer = customerRepository.save(customer);
         accountsRepository.save(createNewAccount(newCustomer));
     }
@@ -76,6 +74,10 @@ public class AccountsServiceImpl implements AccountsService {
 
         accounts.setBranchAddress(accountsDto.branchAddress());
         accountsRepository.save(accounts);
+
+        customer.setEmail(customerDto.email());
+        customer.setName(customerDto.name());
+        customerRepository.save(customer);
     }
 
     @Override
@@ -89,8 +91,6 @@ public class AccountsServiceImpl implements AccountsService {
     private Accounts createNewAccount(Customer customer) {
         Accounts accounts = new Accounts();
         accounts.setCustomer(customer);
-        accounts.setCreatedAt(LocalDateTime.now());
-        accounts.setCreatedBy(AccountsConstants.USER);
         accounts.setAccountType(AccountType.SAVINGS);
         accounts.setBranchAddress(AccountsConstants.ADDRESS);
         return accounts;

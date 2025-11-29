@@ -1,4 +1,4 @@
-package com.zsanjay.bank.accounts.dto;
+package com.zsanjay.bank.loans.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

@@ -1,4 +1,4 @@
-package com.zsanjay.bank.accounts.entity;
+package com.zsanjay.bank.cards.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -13,7 +13,6 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-
 import java.time.LocalDateTime;
 
 @MappedSuperclass
@@ -22,7 +21,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
-public sealed class BaseEntity permits Accounts, Customer{
+public sealed class BaseEntity permits Cards {
 
     @CreatedDate
     @Column(updatable = false)
