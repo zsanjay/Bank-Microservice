@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: git
+  # active: native
+  cloud:
+    config:
+      server:
+       # native:
+        # search-locations: "file:///Users//sanjaymehta//Documents//Microservices-Config//config"
+        #search-locations: "classpath:/config"
+        git:
+          uri: "https://github.com/zsanjay/Bank-Microservice-Config.git"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+server:
+  port: 8071
+
+encrypt:
+  key: "zvrN8Y3VPmU8233A3u2lle6oPfQ9FUwZ"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

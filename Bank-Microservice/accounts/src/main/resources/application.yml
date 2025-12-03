@@ -1,15 +1,11 @@
 server:
   port: 8080
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
 spring:
   application:
     name: accounts
+  profiles:
+    active: prod
   h2:
     console:
       enabled: true
@@ -23,5 +19,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: guest
+    password: guest
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
